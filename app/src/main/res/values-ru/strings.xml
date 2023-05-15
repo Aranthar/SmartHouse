@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Умный Дом</string>
+    <string name="action_options">Настройки</string>
+    <string name="textHomeInfo">Дом</string>
+    <string name="regionTitle">Регион:</string>
+    <string name="cityTitle">Город:</string>
+    <string name="addressTitle">Адрес:</string>
+    <string name="indexTitle">Индекс:</string>
+    <string name="regionTextDefault">Свердловская обл.</string>
+    <string name="cityTextDefault">Екатеринбург</string>
+    <string name="addressTextDefault">ул. Мира, дом 32</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    light theme-->
+    <color name="blue_main_light">#559FED</color>
+    <color name="blue_info_bar_light">#2781E3</color>
+
+<!--    dark theme-->
+    <color name="blue_main_dark">#252525</color>
+    <color name="blue_info_bar_dark">#242424</color>
+
+<!--    rest-->
+    <color name="light">#FFEB3B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_black">#C8C8C8</color>
+</resources>

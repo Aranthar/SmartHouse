@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "167347773647",
+    "project_id": "smarthouse-database-bc26d",
+    "storage_bucket": "smarthouse-database-bc26d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167347773647:android:d33046fed90afca0b497ba",
+        "android_client_info": {
+          "package_name": "com.example.smarthouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167347773647-95v7k4su5qn1gd63k41mr52b0kgg8smp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHLkRFyvxszdC1H0EQ2EpEN0_zQbk2Pf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167347773647-95v7k4su5qn1gd63k41mr52b0kgg8smp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Smart House</string>
+    <string name="action_options">Options</string>
+    <string name="textHomeInfo">House</string>
+    <string name="regionTitle">Region:</string>
+    <string name="cityTitle">City:</string>
+    <string name="addressTitle">Address:</string>
+    <string name="indexTitle">Index:</string>
+    <string name="regionTextDefault">Sverdlovsk reg.</string>
+    <string name="cityTextDefault">Yekaterinburg</string>
+    <string name="addressTextDefault">st. Peace, house 32</string>
+    <string name="indexTextDefault" translatable="false">620371</string>
+    <string name="addObject">Добавить объект</string>
+
+    <string-array name="spinner_action_mode">
+        <item>переключатель</item>
+        <item>уровень освещения</item>
+        <item>датчик движения</item>
+    </string-array>
+    <string-array name="spinner_light_mode">
+        <item>холодное</item>
+        <item>теплое</item>
+    </string-array>
+    <string-array name="spinner_window_mode">
+        <item>50%</item>
+        <item>100%</item>
+    </string-array>
+</resources>

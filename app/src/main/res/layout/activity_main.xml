@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="15dp"
+    android:textAlignment="viewEnd"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pagerNull"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:visibility="visible"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="top|left"
+                    android:layout_marginRight="250dp"
+                    android:layout_weight="1"
+                    android:rotation="315"
+                    app:srcCompat="@drawable/ic_corner" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right|top"
+                    android:layout_weight="1"
+                    android:rotation="45"
+                    app:srcCompat="@drawable/ic_corner" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2_italic"
+                android:gravity="center"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:text="Используйте возможности меню для создания инфополя своего первого объекта!"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginRight="250dp"
+                    android:layout_weight="1"
+                    android:rotation="225"
+                    app:srcCompat="@drawable/ic_corner" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_weight="1"
+                    android:rotation="135"
+                    app:srcCompat="@drawable/ic_corner" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        app:ci_drawable="@drawable/circle_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pager"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pagerNull" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/infoConteiner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/indicator"
+        app:layout_constraintVertical_bias="0.94">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/informationFromSensors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/colorOnPrimary"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="1dp"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView14"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/exo_2"
+                                android:text="Углекислый газ:"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/co2Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/exo_2_italic"
+                                android:text="норма"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="1dp"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView15"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/exo_2"
+                                android:text="Влажность воздуха:"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/airHumidityText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/exo_2_italic"
+                                android:text="низкая"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/exo_2"
+                                android:text="Влажность почвы:"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/soilMoistureText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/exo_2_italic"
+                                android:text="выше нормы"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/lightingInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/colorOnPrimary"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageLamp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginRight="10dp"
+                            app:srcCompat="@drawable/ic_lamp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/titleLight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/exo_2"
+                                android:text="Освещение"
+                                android:textColor="?attr/colorSecondary"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="1dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textModeActivation"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:fontFamily="@font/exo_2_italic"
+                                    android:gravity="bottom"
+                                    android:text="Активация:"
+                                    android:textColor="?attr/colorSecondary"
+                                    android:textSize="16sp" />
+
+                                <Spinner
+                                    android:id="@+id/spinner_activation_mode"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:backgroundTint="@color/white"
+                                    android:hapticFeedbackEnabled="false"
+                                    tools:ignore="TouchTargetSizeCheck" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="1dp"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <TextView
+                                    android:id="@+id/textLightMode"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:fontFamily="@font/exo_2_italic"
+                                    android:gravity="bottom"
+                                    android:text="Освещение:"
+                                    android:textColor="?attr/colorSecondary"
+                                    android:textSize="16sp" />
+
+                                <Spinner
+                                    android:id="@+id/spinner_light_mode"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:backgroundTint="@color/white"
+                                    android:entries="@array/spinner_light_mode"
+                                    android:hapticFeedbackEnabled="false"
+                                    tools:ignore="TouchTargetSizeCheck" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/ic_power"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="end"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/ic_power" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="4dp"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/co2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="?attr/colorOnPrimary"
+                            app:cardCornerRadius="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/imageView7"
+                                        android:layout_width="42dp"
+                                        android:layout_height="42dp"
+                                        app:srcCompat="@drawable/ic_co2" />
+
+                                    <TextView
+                                        android:id="@+id/meaningCo2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="bottom"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/exo_2"
+                                        android:text="637"
+                                        android:textColor="?attr/colorSecondary"
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/textView34"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="bottom"
+                                        android:layout_weight="4"
+                                        android:fontFamily="@font/exo_2_italic"
+                                        android:text="ppm"
+                                        android:textColor="?attr/colorSecondary"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/textView23"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/exo_2_italic"
+                                    android:text="Углекислый газ"
+                                    android:textColor="?attr/colorSecondary"
+                                    android:textSize="15sp" />
+
+                                <ImageView
+                                    android:id="@+id/ic_info_co2"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="bottom|right"
+                                    android:layout_marginTop="8dp"
+                                    app:srcCompat="@drawable/ic_info" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/window"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="?attr/colorOnPrimary"
+                            app:cardCornerRadius="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/imageView8"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        app:srcCompat="@drawable/ic_window" />
+
+                                    <TextView
+                                        android:id="@+id/textView24"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/exo_2"
+                                        android:text="Окно"
+                                        android:textColor="?attr/colorSecondary"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/textOpen"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="bottom"
+                                        android:fontFamily="@font/exo_2_italic"
+                                        android:gravity="bottom"
+                                        android:text="Открыть:"
+                                        android:textColor="?attr/colorSecondary"
+                                        android:textSize="15sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_window_open"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="bottom"
+                                        android:backgroundTint="@color/white"
+                                        android:entries="@array/spinner_window_mode"
+                                        android:hapticFeedbackEnabled="false"
+                                        tools:ignore="TouchTargetSizeCheck" />
+
+                                    <TextView
+                                        android:id="@+id/textClose"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Закрыть"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="15sp"
+                                        android:visibility="gone" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/ic_power_window"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="8dp"
+                                    app:srcCompat="@drawable/ic_power" />
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/airHumidity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="?attr/colorOnPrimary"
+                            android:hapticFeedbackEnabled="true"
+                            app:cardCornerRadius="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/imageView14"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        app:srcCompat="@drawable/ic_water_drop" />
+
+                                    <TextView
+                                        android:id="@+id/airHumidityValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/exo_2"
+                                        android:text="24%"
+                                        android:textColor="?attr/colorSecondary"
+                                        android:textSize="30sp" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/textView27"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/exo_2_italic"
+                                    android:text="Влажность воздуха"
+                                    android:textColor="?attr/colorSecondary"
+                                    android:textSize="15sp" />
+
+                                <ImageView
+                                    android:id="@+id/ic_info_water_home"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="bottom|end"
+                                    android:layout_marginTop="8dp"
+                                    app:srcCompat="@drawable/ic_info" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/soilMoisture"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="?attr/colorOnPrimary"
+                            app:cardCornerRadius="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/imageView15"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        app:srcCompat="@drawable/ic_floor" />
+
+                                    <TextView
+                                        android:id="@+id/soilMoistureValue"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/exo_2"
+                                        android:text="85%"
+                                        android:textColor="?attr/colorSecondary"
+                                        android:textSize="30sp" />
+
+                                    <ImageView
+                                        android:id="@+id/ic_edit_soil_moisture"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        app:srcCompat="@drawable/ic_edit" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/textView30"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/exo_2_italic"
+                                    android:text="Влажность почвы"
+                                    android:textColor="?attr/colorSecondary"
+                                    android:textSize="15sp" />
+
+                                <ImageView
+                                    android:id="@+id/ic_info_water_soil"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="bottom|end"
+                                    android:layout_marginTop="8dp"
+                                    app:srcCompat="@drawable/ic_info" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

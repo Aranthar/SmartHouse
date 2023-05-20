@@ -3,11 +3,10 @@ package com.example.smarthouse.data
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import androidx.recyclerview.widget.RecyclerView
 
 class DataBaseManager(context: Context) {
-    val dataBaseHelper = DataBaseHelper(context)
-    var db: SQLiteDatabase? = null
+    private val dataBaseHelper = DataBaseHelper(context)
+    private var db: SQLiteDatabase? = null
 
     fun openDataBase() {
         db = dataBaseHelper.writableDatabase

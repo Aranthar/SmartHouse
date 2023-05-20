@@ -203,8 +203,8 @@ class MainActivity : AppCompatActivity() {
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 actionWindowMode = if (p0!!.getItemAtPosition(0) == p0.getItemAtPosition(p2)) {
-                    "50%"
-                } else "100%"
+                    "50"
+                } else "100"
                 dbRef.child(Const.windowOpenModeTag).setValue(actionWindowMode)
             }
 
@@ -418,15 +418,16 @@ class MainActivity : AppCompatActivity() {
 
         timer.schedule(timerTask {
             kotlin.run {
-                dbRef.child(Const.currentCo2Tag).setValue((600..820).random().toString())
-                dbRef.child(Const.currentAirHumidityTag).setValue((30..70).random().toString())
-                dbRef.child(Const.currentSoilMoistureTag).setValue((60..75).random().toString())
-
                 dbRef.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
                             for (empSnap in snapshot.children) {
-                                updateDataBase(empSnap.key.toString(), empSnap.value.toString())
+                                when (empSnap.key) {
+                                    Const.currentCo2Tag -> continue
+                                    Const.currentAirHumidityTag -> continue
+                                    Const.currentSoilMoistureTag -> continue
+                                    else -> updateDataBase(empSnap.key.toString(), empSnap.value.toString())
+                                }
                             }
                         }
                     }
@@ -439,9 +440,6 @@ class MainActivity : AppCompatActivity() {
 
                 for (list in dataList) {
                     when(list[0]) {
-                        Const.currentCo2Tag -> indicatorCo2 = list[1]?.toInt()!!
-                        Const.currentAirHumidityTag -> airHumidityIndex = list[1]?.toInt()!!
-                        Const.currentSoilMoistureTag -> soilMoistureIndex = list[1]?.toInt()!!
                         Const.powerHomeLightTag -> isHomeLampOnPowerEnable = list[1]?.toBoolean()!!
                         Const.powerStreetLightTag -> isStreetLampOnPowerEnable = list[1]?.toBoolean()!!
                         Const.windowPowerTag -> windowIsOpen = list[1]?.toBoolean()!!
@@ -494,56 +492,6 @@ class MainActivity : AppCompatActivity() {
                             dataSetSize = dataSet.size
                         }
 
-                        when (indicatorCo2) {
-                            -1 -> {
-                                binding.meaningCo2.text = "0"
-                                binding.co2Text.text = Const.NaN
-                            }
-                            else -> {
-                                binding.meaningCo2.text = indicatorCo2.toString()
-
-                                when {
-                                    indicatorCo2 in minIndicatorCo2..maxIndicatorCo2 -> binding.co2Text.text =
-                                        Const.normal
-                                    indicatorCo2 < minIndicatorCo2 -> binding.co2Text.text =
-                                        Const.belowNormal
-                                    else -> binding.co2Text.text =
-                                        Const.aboveTheNorm
-                                }
-                            }
-                        }
-
-                        when (airHumidityIndex) {
-                            -1 -> {
-                                binding.airHumidityValue.text  = "0%"
-                                binding.airHumidityText.text = Const.NaN
-                            }
-                            else -> {
-                                binding.airHumidityValue.text  = "$airHumidityIndex%"
-
-                                when {
-                                    airHumidityIndex in minAirHumidity..maxAirHumidity -> binding.airHumidityText.text = Const.normal
-                                    airHumidityIndex < minAirHumidity -> binding.airHumidityText.text = Const.belowNormal
-                                    else -> binding.airHumidityText.text = Const.aboveTheNorm
-                                }
-                            }
-                        }
-
-                        when (soilMoistureIndex) {
-                            -1 -> {
-                                binding.soilMoistureValue.text  = "0%"
-                                binding.soilMoistureText.text = Const.NaN
-                            }
-                            else -> {
-                                binding.soilMoistureValue.text  = "$soilMoistureIndex%"
-
-                                when {
-                                    soilMoistureIndex in minSoilMoisture..maxSoilMoisture -> binding.soilMoistureText.text = Const.normal
-                                    soilMoistureIndex < minSoilMoisture -> binding.soilMoistureText.text = Const.belowNormal
-                                    else -> binding.soilMoistureText.text = Const.aboveTheNorm
-                                }
-                            }
-                        }
                         if (lightMode == "домашнее") {
                             if (isHomeLampOnPowerEnable) {
                                 binding.imageLamp.setColorFilter(ContextCompat.getColor(this@MainActivity, R.color.light))
@@ -580,8 +528,8 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         when (actionWindowMode) {
-                            "50%" -> spinnerWindowMode.setSelection(0)
-                            "100%" -> spinnerWindowMode.setSelection(1)
+                            "50" -> spinnerWindowMode.setSelection(0)
+                            "100" -> spinnerWindowMode.setSelection(1)
                         }
 
                         when (isPasswordRight) {
@@ -628,7 +576,99 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }, 0L, 15L * 100)
+        }, 0L, 10L * 100)
+
+        timer.schedule(timerTask {
+            kotlin.run {
+                dbRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            for (empSnap in snapshot.children) {
+                                when (empSnap.key) {
+                                    Const.currentCo2Tag -> updateDataBase(empSnap.key.toString(), empSnap.value.toString())
+                                    Const.currentAirHumidityTag -> updateDataBase(empSnap.key.toString(), empSnap.value.toString())
+                                    Const.currentSoilMoistureTag -> updateDataBase(empSnap.key.toString(), empSnap.value.toString())
+                                }
+                            }
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+                val dataList = dataBaseManager.readDataBaseData()
+
+                for (list in dataList) {
+                    when(list[0]) {
+                        Const.currentCo2Tag -> indicatorCo2 = list[1]?.toInt()!!
+                        Const.currentAirHumidityTag -> airHumidityIndex = list[1]?.toInt()!!
+                        Const.currentSoilMoistureTag -> soilMoistureIndex = list[1]?.toInt()!!
+                    }
+                }
+
+                handler.post {
+                    kotlin.run {
+                        when (indicatorCo2) {
+                            -1 -> {
+                                binding.meaningCo2.text = "0"
+                                binding.co2Text.text = Const.NaN
+                            }
+                            else -> {
+                                binding.meaningCo2.text = indicatorCo2.toString()
+
+                                when {
+                                    indicatorCo2 in minIndicatorCo2..maxIndicatorCo2 -> binding.co2Text.text =
+                                        Const.normal
+                                    indicatorCo2 < minIndicatorCo2 -> binding.co2Text.text =
+                                        Const.belowNormal
+                                    else -> binding.co2Text.text =
+                                        Const.aboveTheNorm
+                                }
+                            }
+                        }
+
+                        when (airHumidityIndex) {
+                            -1 -> {
+                                binding.airHumidityValue.text  = "0%"
+                                binding.airHumidityText.text = Const.NaN
+                            }
+                            else -> {
+                                binding.airHumidityValue.text  = "$airHumidityIndex%"
+
+                                when {
+                                    airHumidityIndex in minAirHumidity..maxAirHumidity -> binding.airHumidityText.text =
+                                        Const.normal
+                                    airHumidityIndex < minAirHumidity -> binding.airHumidityText.text =
+                                        Const.belowNormal
+                                    else -> binding.airHumidityText.text =
+                                        Const.aboveTheNorm
+                                }
+                            }
+                        }
+
+                        when (soilMoistureIndex) {
+                            -1 -> {
+                                binding.soilMoistureValue.text  = "0%"
+                                binding.soilMoistureText.text = Const.NaN
+                            }
+                            else -> {
+                                binding.soilMoistureValue.text  = "$soilMoistureIndex%"
+
+                                when {
+                                    soilMoistureIndex in minSoilMoisture..maxSoilMoisture -> binding.soilMoistureText.text =
+                                        Const.normal
+                                    soilMoistureIndex < minSoilMoisture -> binding.soilMoistureText.text =
+                                        Const.belowNormal
+                                    else -> binding.soilMoistureText.text =
+                                        Const.aboveTheNorm
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }, 0L, 5L * 1000)
     }
 
     fun updateDataBase(const: String, content: String) {

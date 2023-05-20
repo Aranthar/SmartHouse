@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                         binding.imageLamp.setColorFilter(ContextCompat.getColor(this@MainActivity, R.color.white))
                     }
 
-                    actionMode = "переключатель"
+                    actionMode = "Switch"
                 } else {
                     binding.icPower.visibility = View.GONE
                     binding.imageLamp.setColorFilter(ContextCompat.getColor(this@MainActivity, R.color.white))
@@ -152,8 +152,8 @@ class MainActivity : AppCompatActivity() {
                     isStreetLampOnPowerEnable = false
 
                     actionMode = if (actionModeList[1] == p0?.getItemAtPosition(p2)) {
-                        "уровень освещения"
-                    } else "датчик движения"
+                        "LevelLighting"
+                    } else "MotionSensor"
 
                 }
                 dbRef.child(Const.actionModeTag).setValue(actionMode)
@@ -175,12 +175,12 @@ class MainActivity : AppCompatActivity() {
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 if (p0!!.getItemAtPosition(0) == p0.getItemAtPosition(p2)) {
-                    lightMode = "домашнее"
+                    lightMode = "homemade"
                     binding.spinnerActivationMode.visibility = View.GONE
                     binding.textModeActivation.visibility = View.GONE
                     binding.icPower.visibility = View.VISIBLE
                 } else {
-                    lightMode = "уличное"
+                    lightMode = "street"
                     binding.spinnerActivationMode.visibility = View.VISIBLE
                     binding.textModeActivation.visibility = View.VISIBLE
                 }
@@ -215,7 +215,7 @@ class MainActivity : AppCompatActivity() {
 
 //        Light switch
         binding.icPower.setOnClickListener {
-            if (lightMode == "домашнее") {
+            if (lightMode == "homemade") {
                 if (isHomeLampOnPowerEnable) {
                     binding.imageLamp.setColorFilter(ContextCompat.getColor(this, R.color.white))
                     viewModel.isHomeLampOnPowerEnable = false
@@ -492,7 +492,7 @@ class MainActivity : AppCompatActivity() {
                             dataSetSize = dataSet.size
                         }
 
-                        if (lightMode == "домашнее") {
+                        if (lightMode == "homemade") {
                             if (isHomeLampOnPowerEnable) {
                                 binding.imageLamp.setColorFilter(ContextCompat.getColor(this@MainActivity, R.color.light))
                             } else {
@@ -517,14 +517,14 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         when (actionMode) {
-                            "переключатель" -> spinnerActionMode.setSelection(0)
-                            "уровень освещения" -> spinnerActionMode.setSelection(1)
-                            "датчик движения" -> spinnerActionMode.setSelection(2)
+                            "Switch" -> spinnerActionMode.setSelection(0)
+                            "LevelLighting" -> spinnerActionMode.setSelection(1)
+                            "MotionSensor" -> spinnerActionMode.setSelection(2)
                         }
 
                         when (lightMode) {
-                            "домашнее" -> spinnerLightingSwitch.setSelection(0)
-                            "уличное" -> spinnerLightingSwitch.setSelection(1)
+                            "homemade" -> spinnerLightingSwitch.setSelection(0)
+                            "street" -> spinnerLightingSwitch.setSelection(1)
                         }
 
                         when (actionWindowMode) {

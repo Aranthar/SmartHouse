@@ -2,14 +2,6 @@ package com.example.smarthouse
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -39,13 +31,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ViewModel
 
-//    Notifications
-    private lateinit var notificationManager: NotificationManager
-    private lateinit var notificationChanel: NotificationChannel
-    private lateinit var builder: Notification.Builder
-    private val chanelId = "com.example.smarthouse"
-    private val description = "Несанкционированный вход"
-
 //    Spinners
     private lateinit var spinnerActionMode: Spinner
     private lateinit var spinnerLightingSwitch: Spinner
@@ -69,8 +54,6 @@ class MainActivity : AppCompatActivity() {
     private var isHomeLampOnPowerEnable = false
     private var isStreetLampOnPowerEnable = false
     private var windowIsOpen = false
-    private var isPasswordRight = ""
-    private var passwordCounter = 0
 
 //    Measuring range
     private val minIndicatorCo2 = 600
@@ -89,8 +72,6 @@ class MainActivity : AppCompatActivity() {
         dbRef = FirebaseDatabase.getInstance().reference
 
         viewModel = ViewModelProvider(this)[ViewModel::class.java]
-
-        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         viewModel.minCurrentNumber.observe(this) {
             minSoilMoisture = it
@@ -256,7 +237,6 @@ class MainActivity : AppCompatActivity() {
                 windowIsOpen = false
 
                 dbRef.child(Const.windowPowerTag).setValue(windowIsOpen)
-                dbRef.child(Const.passwordTag).setValue("successfully")
             } else {
                 binding.textOpen.visibility = View.GONE
                 binding.spinnerWindowOpen.visibility = View.GONE
@@ -265,7 +245,6 @@ class MainActivity : AppCompatActivity() {
                 windowIsOpen = true
 
                 dbRef.child(Const.windowPowerTag).setValue(windowIsOpen)
-                dbRef.child(Const.passwordTag).setValue("failed")
             }
         }
 
@@ -448,8 +427,6 @@ class MainActivity : AppCompatActivity() {
                         Const.actionModeTag -> actionMode = list[1]!!
                         Const.lightModeTag -> lightMode = list[1]!!
                         Const.windowOpenModeTag -> actionWindowMode = list[1]!!
-                        Const.passwordTag -> isPasswordRight = list[1].toString()
-                        Const.passwordCurrentNumber -> passwordCounter = list[1]?.toInt()!!
                     }
                     if (list[0]?.matches("${Const.objectsTag}\\d".toRegex())!!) {
                         val position = list[0]?.replace(Const.objectsTag, "")!!.toInt()
@@ -530,48 +507,6 @@ class MainActivity : AppCompatActivity() {
                         when (actionWindowMode) {
                             "50" -> spinnerWindowMode.setSelection(0)
                             "100" -> spinnerWindowMode.setSelection(1)
-                        }
-
-                        when (isPasswordRight) {
-                            "successfully" -> {
-                                passwordCounter = 0
-                                dbRef.child(Const.passwordCurrentNumber).setValue(passwordCounter.toString())
-                            }
-                            "failed" -> {
-                                if (passwordCounter == 0) passwordCounter++ else passwordCounter = 2
-                                dbRef.child(Const.passwordCurrentNumber).setValue(passwordCounter.toString())
-
-                                if (passwordCounter == 1) {
-                                    val intent = Intent(this@MainActivity, MainActivity::class.java)
-                                    val pendingIntent = PendingIntent.getActivity(this@MainActivity, 0, intent, PendingIntent.FLAG_MUTABLE)
-
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        notificationChanel = NotificationChannel(chanelId, description, NotificationManager.IMPORTANCE_HIGH)
-                                        notificationChanel.enableLights(true)
-                                        notificationChanel.lightColor = Color.GREEN
-                                        notificationChanel.enableVibration(false)
-                                        notificationManager.createNotificationChannel(notificationChanel)
-                                        builder = Notification.Builder(this@MainActivity, chanelId)
-                                            .setContentTitle("Умный Дом")
-                                            .setContentText("Система безопасности регистрирует несанкционированный вход.")
-                                            .setSmallIcon(R.drawable.ic_home)
-                                            .setLargeIcon(BitmapFactory.decodeResource(this@MainActivity.resources, R.mipmap.ic_launcher))
-                                            .setContentIntent(pendingIntent)
-                                    } else {
-                                        builder = Notification.Builder(this@MainActivity)
-                                            .setContentTitle("Умный Дом")
-                                            .setContentText("Система безопасности регистрирует несанкционированный вход.")
-                                            .setSmallIcon(R.drawable.ic_home)
-                                            .setLargeIcon(BitmapFactory.decodeResource(this@MainActivity.resources, R.mipmap.ic_launcher))
-                                            .setContentIntent(pendingIntent)
-                                    }
-                                    notificationManager.notify(101, builder.build())
-                                }
-                            }
-                            "reset" -> {
-                                passwordCounter = 0
-                                dbRef.child(Const.passwordCurrentNumber).setValue(passwordCounter.toString())
-                            }
                         }
                     }
                 }

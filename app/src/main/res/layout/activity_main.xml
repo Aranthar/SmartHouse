@@ -493,15 +493,16 @@
                                         android:hapticFeedbackEnabled="false"
                                         tools:ignore="TouchTargetSizeCheck" />
 
-                                    <TextView
-                                        android:id="@+id/textClose"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Закрыть"
-                                        android:textColor="#FFFFFF"
-                                        android:textSize="15sp"
-                                        android:visibility="gone" />
                                 </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/textClose"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Закрыть"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:visibility="gone" />
 
                                 <ImageView
                                     android:id="@+id/ic_power_window"

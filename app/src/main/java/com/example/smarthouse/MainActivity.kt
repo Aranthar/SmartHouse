@@ -202,13 +202,13 @@ class MainActivity : AppCompatActivity() {
                     viewModel.isHomeLampOnPowerEnable = false
                     viewModel.homeLampOnPower.value = viewModel.isHomeLampOnPowerEnable
 
-                    dbRef.child(Const.powerHomeLightTag).setValue("false")
+                    dbRef.child(Const.powerHomeLightTag).setValue(viewModel.isHomeLampOnPowerEnable.toString())
                 } else {
                     binding.imageLamp.setColorFilter(ContextCompat.getColor(this, R.color.light))
                     viewModel.isHomeLampOnPowerEnable = true
                     viewModel.homeLampOnPower.value = viewModel.isHomeLampOnPowerEnable
 
-                    dbRef.child(Const.powerHomeLightTag).setValue("true")
+                    dbRef.child(Const.powerHomeLightTag).setValue(viewModel.isHomeLampOnPowerEnable.toString())
                 }
             } else {
                 if (isStreetLampOnPowerEnable) {
@@ -216,13 +216,13 @@ class MainActivity : AppCompatActivity() {
                     viewModel.isStreetLampOnPowerEnable = false
                     viewModel.streetLampOnPower.value = viewModel.isStreetLampOnPowerEnable
 
-                    dbRef.child(Const.powerStreetLightTag).setValue("false")
+                    dbRef.child(Const.powerStreetLightTag).setValue(viewModel.isStreetLampOnPowerEnable.toString())
                 } else {
                     binding.imageLamp.setColorFilter(ContextCompat.getColor(this, R.color.light))
                     viewModel.isStreetLampOnPowerEnable = true
                     viewModel.streetLampOnPower.value = viewModel.isStreetLampOnPowerEnable
 
-                    dbRef.child(Const.powerStreetLightTag).setValue("true")
+                    dbRef.child(Const.powerStreetLightTag).setValue(viewModel.isStreetLampOnPowerEnable.toString())
                 }
             }
         }
@@ -230,21 +230,17 @@ class MainActivity : AppCompatActivity() {
 //        Window
         binding.icPowerWindow.setOnClickListener {
             if (windowIsOpen) {
-                binding.textOpen.visibility = View.VISIBLE
-                binding.spinnerWindowOpen.visibility = View.VISIBLE
                 binding.textClose.visibility = View.GONE
 
                 windowIsOpen = false
 
-                dbRef.child(Const.windowPowerTag).setValue(windowIsOpen)
+                dbRef.child(Const.windowPowerTag).setValue(windowIsOpen.toString())
             } else {
-                binding.textOpen.visibility = View.GONE
-                binding.spinnerWindowOpen.visibility = View.GONE
                 binding.textClose.visibility = View.VISIBLE
 
                 windowIsOpen = true
 
-                dbRef.child(Const.windowPowerTag).setValue(windowIsOpen)
+                dbRef.child(Const.windowPowerTag).setValue(windowIsOpen.toString())
             }
         }
 
@@ -484,12 +480,8 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         if (windowIsOpen) {
-                            binding.textOpen.visibility = View.GONE
-                            binding.spinnerWindowOpen.visibility = View.GONE
                             binding.textClose.visibility = View.VISIBLE
                         } else {
-                            binding.textOpen.visibility = View.VISIBLE
-                            binding.spinnerWindowOpen.visibility = View.VISIBLE
                             binding.textClose.visibility = View.GONE
                         }
 
